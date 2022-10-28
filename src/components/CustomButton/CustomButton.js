@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 const CustomButton = ({onPress, text, type = 'PRIMARY', bgColor, txtColor}) => {
@@ -33,9 +33,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B71F3',
   },
   container_TERTIARY: {},
+  container_SECONDARY: {
+    borderColor: '#3B71F3',
+    borderWidth: 2,
+  },
   text: {
     fontWeight: 'bold',
   },
+
   text_PRIMARY: {
     color: 'white',
   },
