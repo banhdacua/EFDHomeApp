@@ -3,15 +3,18 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
-
-const onConfirmPressed = () => {
-  console.warn('Confirm has been pressed');
-};
-const onReSendCodePressed = () => {};
-const onBackToSignInPressed = () => {};
+import {useNavigation} from '@react-navigation/native';
 
 const ForgotPasswordScreen = () => {
   const {code, setCode} = useState('');
+  const navigation = useNavigation();
+  const onConfirmPressed = () => {
+    navigation.navigate('Home');
+  };
+  const onReSendCodePressed = () => {};
+  const onBackToSignInPressed = () => {
+    navigation.navigate('SignIn');
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

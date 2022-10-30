@@ -5,25 +5,27 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
-const ConfirmEmailScreen = () => {
-  const {username, setUsername} = useState('');
+const ResetPasswordScreen = () => {
+  const {code, setCode} = useState('');
+  const {newPassword, setNewPassword} = useState('');
   const navigation = useNavigation();
+  const onSubmitPressed = () => {
+    navigation.navigate('Home');
+  };
   const onBackToSignInPressed = () => {
     navigation.navigate('SignIn');
-  };
-  const onSendPressed = () => {
-    navigation.navigate('ResetPassword');
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
         <Text style={styles.title}>Reset your password</Text>
+        <CustomInput placeholder="Code" value={code} setValue={setCode} />
         <CustomInput
-          placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          placeholder="Enter your new Password"
+          value={newPassword}
+          setValue={setNewPassword}
         />
-        <CustomButton text="Send" onPress={onSendPressed} />
+        <CustomButton text="Submit" onPress={onSubmitPressed} />
         <CustomButton
           text="Back to Sign In"
           onPress={onBackToSignInPressed}
@@ -52,4 +54,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default ConfirmEmailScreen;
+export default ResetPasswordScreen;

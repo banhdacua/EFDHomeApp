@@ -4,19 +4,23 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButton from '../../components/SocialSignInButton';
-const onRegisterPressed = () => {
-  console.warn('Register has been pressed');
-};
-
-const onTermOfUsePressed = () => {};
-const onPrivacyPolicyPressed = () => {};
-const onSignInPressed = () => {};
+import {useNavigation} from '@react-navigation/native';
 
 const SignUpScreen = () => {
   const {username, setUsername} = useState('');
   const {password, setPassword} = useState('');
   const {email, setEmail} = useState('');
   const {passwordRepeat, setPasswordRepeat} = useState('');
+  const navigation = useNavigation();
+  const onRegisterPressed = () => {
+    navigation.navigate('ConfirmEmail');
+  };
+
+  const onTermOfUsePressed = () => {};
+  const onPrivacyPolicyPressed = () => {};
+  const onSignInPressed = () => {
+    navigation.navigate('SignIn');
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
