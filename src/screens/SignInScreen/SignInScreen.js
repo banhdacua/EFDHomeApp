@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Image,
@@ -21,11 +21,11 @@ const SignInScreen = () => {
     handleSubmit,
     formState: {errors},
   } = useForm();
-  const onSignInPressed = () => {
+  const onSignInPressed = data => {
+    console.log(data);
     navigation.navigate('Home');
   };
-  const onForgotPasswordPressed = data => {
-    console.log(data);
+  const onForgotPasswordPressed = () => {
     navigation.navigate('ForgotPassword');
   };
   const onCreateAccountPressed = () => {
@@ -43,17 +43,17 @@ const SignInScreen = () => {
           name="username"
           placeholder="Username"
           control={control}
-          rules={{required: 'Username is required'}}
+          rules={{required: true}}
         />
         <CustomInput
           placeholder="Password"
           name="password"
           control={control}
           rules={{
-            required: 'Password is required',
+            required: true,
             minLength: {
               value: 6,
-              message: 'Password have to be minimum 3 characters long',
+              message: 'Password have to be minimum 6 characters long',
             },
           }}
           secureTextEntry={true}
