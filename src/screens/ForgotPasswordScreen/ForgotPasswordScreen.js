@@ -4,9 +4,14 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 const ConfirmEmailScreen = () => {
-  const {username, setUsername} = useState('');
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
   const navigation = useNavigation();
   const onBackToSignInPressed = () => {
     navigation.navigate('SignIn');
@@ -20,10 +25,11 @@ const ConfirmEmailScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
         <CustomInput
           placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          name="username"
+          control={control}
+          rules={{required: 'Username is required'}}
         />
-        <CustomButton text="Send" onPress={onSendPressed} />
+        <CustomButton text="Send" onPress={handleSubmit(onSendPressed)} />
         <CustomButton
           text="Back to Sign In"
           onPress={onBackToSignInPressed}

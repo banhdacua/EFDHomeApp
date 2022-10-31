@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import * as Constants from '../../constants';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
-
+import {useForm} from 'react-hook-form';
 const ResetPasswordScreen = () => {
-  const {code, setCode} = useState('');
-  const {newPassword, setNewPassword} = useState('');
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
   const navigation = useNavigation();
   const onSubmitPressed = () => {
     navigation.navigate('Home');
@@ -19,13 +23,41 @@ const ResetPasswordScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
         <Text style={styles.title}>Reset your password</Text>
-        <CustomInput placeholder="Code" value={code} setValue={setCode} />
+        <CustomInput
+          placeholder="Enter your confirmation code"
+          name="code"
+          control={control}
+          rules={{
+            require: 'Check your email for confirmation code',
+            minLength: {
+              value: 6,
+              message: '',
+            },
+            maxLength: {
+              value: 6,
+              message: '',
+            },
+          }}
+        />
         <CustomInput
           placeholder="Enter your new Password"
-          value={newPassword}
-          setValue={setNewPassword}
+          name="newPassword"
+          control={control}
+          rules={{
+            required: 'Password is required',
+            minLength: {
+              value: 6,
+              message: 'Password have to be minimum 3 characters long',
+            },
+            pattern: {
+              value: Constants.PASSWORD_REGEX,
+              message:
+                'Password should contain at least 1 alphabet and 1 numeric value',
+            },
+          }}
+          secureTextEntry={true}
         />
-        <CustomButton text="Submit" onPress={onSubmitPressed} />
+        <CustomButton text="Submit" onPress={handleSubmit(onSubmitPressed)} />
         <CustomButton
           text="Back to Sign In"
           onPress={onBackToSignInPressed}

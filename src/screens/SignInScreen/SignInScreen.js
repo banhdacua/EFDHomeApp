@@ -19,7 +19,7 @@ const SignInScreen = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: {},
   } = useForm();
   const onSignInPressed = data => {
     console.log(data);
@@ -54,6 +54,11 @@ const SignInScreen = () => {
             minLength: {
               value: 6,
               message: 'Password have to be minimum 6 characters long',
+            },
+            pattern: {
+              value: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+              message:
+                'Password should contain at least 1 alphabet and 1 numeric value',
             },
           }}
           secureTextEntry={true}
