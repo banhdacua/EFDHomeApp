@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Image,
@@ -19,7 +19,7 @@ const SignInScreen = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: {},
   } = useForm();
   const onSignInPressed = () => {
     navigation.navigate('Home');
@@ -54,6 +54,11 @@ const SignInScreen = () => {
             minLength: {
               value: 6,
               message: 'Password have to be minimum 3 characters long',
+            },
+            pattern: {
+              value: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+              message:
+                'Password should contain at least 1 alphabet and 1 numeric value',
             },
           }}
           secureTextEntry={true}
