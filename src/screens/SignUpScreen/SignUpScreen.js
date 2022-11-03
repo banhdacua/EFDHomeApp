@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButton from '../../components/SocialSignInButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import * as Constants from '../../constants';
@@ -93,9 +92,8 @@ const SignUpScreen = () => {
             Privacy Policy
           </Text>
         </Text>
-        <SocialSignInButton />
         <CustomButton
-          text="Have an account? Sign In"
+          text="Already have an account? Sign In"
           onPress={onSignInPressed}
           type="TERTIARY"
         />

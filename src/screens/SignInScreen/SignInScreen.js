@@ -9,7 +9,6 @@ import {
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButton from '../../components/SocialSignInButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 
@@ -69,7 +68,6 @@ const SignInScreen = () => {
           onPress={onForgotPasswordPressed}
           type="TERTIARY"
         />
-        <SocialSignInButton />
         <CustomButton
           text="Don't have an account? Create one"
           onPress={onCreateAccountPressed}
